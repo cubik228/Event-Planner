@@ -19,9 +19,20 @@
   <strong>Category:</strong>
   <%= @event.category.name %>
 </p>
+<% if @weather_data.present? && @weather_data['current'].present? %>
+  <h1>Погода в <%= @weather_data['location']['name'] %></h1>
+  <p>Текущая температура: <%= @weather_data['current']['temp_c'] %> градусов Цельсия</p>
+<% elsif @weather_data.present? && @weather_data['forecast'].present? %>
+  <h1>Прогноз погоды в <%= @weather_data['location']['name'] %></h1>
+  <% @weather_data['forecast']['forecastday'].each do |forecastday| %>
+    <h2><%= forecastday['date'] %></h2>
+    <p>Максимальная температура: <%= forecastday['day']['maxtemp_c'] %> градусов Цельсия</p>
+  <% end %>
+<% else %>
+  <p>Данные о погоде недоступны.</p>
+<% end %>
 
-<h1>Погода в <%= @weather_data['location']['name'] %></h1>
-<p>Текущая температура: <%= @weather_data['current']['temp_c'] %> градусов Цельсия</p>
+<!-- <%=@weather_data.inspect %> -->
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
