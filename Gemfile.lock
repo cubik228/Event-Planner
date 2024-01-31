@@ -156,6 +156,7 @@ GEM
       rack (>= 2.2.3)
       rack-protection
     orm_adapter (0.5.0)
+    pagy (6.4.3)
     pg (1.5.4)
     psych (5.1.2)
       stringio
@@ -265,6 +266,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   omniauth
+  pagy
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.3)

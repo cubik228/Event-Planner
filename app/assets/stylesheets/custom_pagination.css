@@ -1,0 +1,42 @@
+.my-custom-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.my-custom-page-link {
+  padding: 8px 12px;
+  margin: 0 4px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  color: #007bff;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.my-custom-page-link:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.my-custom-page-item.prev,
+.my-custom-page-item.next,
+.my-custom-page-item.first,
+.my-custom-page-item.last {
+  padding: 8px 12px;
+  margin: 0 4px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  color: #007bff;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.my-custom-page-item.prev:hover,
+.my-custom-page-item.next:hover,
+.my-custom-page-item.first:hover,
+.my-custom-page-item.last:hover {
+  background-color: #007bff;
+  color: #fff;
+}
