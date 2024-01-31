@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    items_per_page = 2 # Ваше желаемое количество элементов на странице
+    items_per_page = 10 # Ваше желаемое количество элементов на странице
     @pagy, @events = pagy(Event.all, items: items_per_page)
     @events = @events.where('name ILIKE ?', "%#{params[:name]}%") if params[:name].present?
     @events = @events.where(category_id: params[:category_id]) if params[:category_id].present?
