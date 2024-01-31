@@ -3,6 +3,8 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+    @events = @events.where('name ILIKE ?', "%#{params[:name]}%") if params[:name].present?
+    @events = @events.where(category_id: params[:category_id]) if params[:category_id].present?
   end
 
   def show
