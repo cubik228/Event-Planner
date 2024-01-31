@@ -2,14 +2,9 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    items_per_page = 10 # Ваше желаемое количество элементов на странице
-    @pagy, @events = pagy(Event.all, items: items_per_page)
-    @events = @events.where('name ILIKE ?', "%#{params[:name]}%") if params[:name].present?
-    @events = @events.where(category_id: params[:category_id]) if params[:category_id].present?
+    items_per_page = 10
+    @pagy, @events = pagy(filtered_events, items: items_per_page)
   end
-  
-  
-  
 
   def show
   end
@@ -31,10 +26,14 @@ class EventsController < ApplicationController
   end
 
   def update
-    if @event.update(event_params)
-      redirect_to @event, notice: 'Event was successfully updated.'
+    if event_creation_allowed?
+      if @event.update(event_params)
+        redirect_to @event, notice: 'Event was successfully updated.'
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to @event, alert: 'Event cannot be updated after 5 hours of creation.'
     end
   end
 
@@ -52,4 +51,13 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:name, :date, :description, :category_id)
   end
+  
+  def filtered_events
+    events = Event.all
+    events = events.where('name ILIKE ?', "%#{params[:name]}%") if params[:name].present?
+    events = events.where(category_id: params[:category_id]) if params[:category_id].present?
+    events
+  end
+  
+ 
 end
