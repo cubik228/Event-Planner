@@ -8,7 +8,10 @@ class EventsController < ApplicationController
 
   def show
     weather_service = WeatherService.new
-    @weather_data = weather_service.get_weather('Минск') 
+    @weather_data = weather_service.get_weather_by_date(@event.date, 'Минск')
+    
+    #binding.pry
+    
   end
 
   def new

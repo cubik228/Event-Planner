@@ -15,6 +15,7 @@ gem "jbuilder"
 gem "bootsnap", require: false
 gem 'devise'
 gem 'omniauth' 
+gem 'pry'
 gem 'pagy'
 gem 'httparty'
 
