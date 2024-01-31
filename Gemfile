@@ -16,6 +16,7 @@ gem "bootsnap", require: false
 gem 'devise'
 gem 'omniauth' 
 gem 'pagy'
+gem 'httparty'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]

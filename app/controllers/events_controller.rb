@@ -7,6 +7,8 @@ class EventsController < ApplicationController
   end
 
   def show
+    weather_service = WeatherService.new
+    @weather_data = weather_service.get_weather('Минск') 
   end
 
   def new

@@ -20,5 +20,8 @@
   <%= @event.category.name %>
 </p>
 
+<h1>Погода в <%= @weather_data['location']['name'] %></h1>
+<p>Текущая температура: <%= @weather_data['current']['temp_c'] %> градусов Цельсия</p>
+
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
