@@ -18,7 +18,8 @@ gem 'omniauth'
 gem 'pry'
 gem 'pagy'
 gem 'httparty'
-
+gem 'bootstrap'
+gem 'sassc-rails'
 group :development, :test do
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
 end

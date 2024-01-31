@@ -9,10 +9,32 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag 'application', 'custom_pagination', media: 'all' %>
     <%= javascript_importmap_tags %>
+    <style>
+      /* Существующие стили */
+      header {
+        border: 1px solid #ccc;
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      header div {
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+
+      header div:hover {
+        background-color: #f0f0f0;
+      }
+
+      /* Новые стили */
+      /* Дополнительные стили для вашего проекта могут быть добавлены здесь */
+    </style>
   </head>
 
   <body>
-      
+    <%= render 'include/nawBar' %>
     <%= yield %>
   </body>
 </html>

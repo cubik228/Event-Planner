@@ -1,51 +1,57 @@
-<h1>Events</h1>
-<%= link_to 'Profile', profiles_path %>
+<div class="container my-4">
+  <h1>Events</h1>
 
-<%= form_tag(events_path, method: 'get') do %>
-  <div class="field">
-    <%= label_tag 'name', 'Название' %>
-    <%= text_field_tag 'name', params[:name], placeholder: 'Введите имя' %>
-  </div>
+  <%= form_tag(events_path, method: 'get') do %>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= label_tag 'name', 'name' %>
+        <%= text_field_tag 'name', params[:name], class: 'form-control', placeholder: 'Enter the name' %>
+      </div>
 
-  <div class="field">
-    <%= label_tag 'category_id', 'Категория' %>
-    <%= collection_select(:event, :category_id, Category.all, :id, :name, { include_blank: true }, { class: 'select2' }) %>
-  </div>
+      <div class="form-group col-md-6">
+        <%= label_tag 'category_id', 'category' %>
+        <%= collection_select(:event, :category_id, Category.all, :id, :name, { include_blank: true }, { class: 'form-control select2' }) %>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= submit_tag 'Фильтровать' %>
-  </div>
-<% end %>
+    <div class="form-group mt-3">
+      <%= submit_tag 'Filter', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Date</th>
-      <th>Description</th>
-      <th>Category</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @events.each do |event| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= event.name %></td>
-        <td><%= event.date %></td>
-        <td><%= event.description %></td>
-        <td><%= event.category.name %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td>
-          <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-primary' if event.created_at >= 5.hours.ago %>
-        </td>
-        <td><%= button_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= event.name %></td>
+          <td><%= event.date %></td>
+          <td><%= event.description %></td>
+          <td><%= event.category&.name %></td>
+          <td><%= link_to 'Show', event, class: 'btn btn-info btn-sm' %></td>
+          <td>
+            <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-primary btn-sm' if event.created_at >= 5.hours.ago %>
+          </td>
+          <td><%= button_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Event', new_event_path %>
-<%==   pagy_bootstrap_nav(@pagy) %>
+  <br>
+
+  <%= link_to 'New Event', new_event_path, class: 'btn btn-success' %>
+  <div class="center my-4"  style="margin-left: 42%;">
+    <%== pagy_bootstrap_nav(@pagy, class: 'mt-3') %>  
+  </div>
+  
+</div>

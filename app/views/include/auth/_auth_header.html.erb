@@ -1,11 +1,22 @@
-<% if user_signed_in? %>
-  <a href="#" class="btn btn-dark">
-    Добро пожаловать, <%= current_user.email %>
-  </a>
-  <%= button_to 'Выход', destroy_user_session_path, method: :delete, class: "btn btn-primary btn-sm" %>
-  <%= link_to 'Редактирование', edit_user_registration_path, class: "btn btn-primary  btn-sm" %>
-
-<% else %>
-  <%= link_to 'Вход', new_user_session_path, class: "btn btn-primary  btn-sm" %>
-  <%= link_to 'Регистрация', new_user_registration_path, class: "btn btn-primary  btn-sm" %>
-<% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <% if user_signed_in? %>
+        <div class="text-center mt-4">
+          <a href="#" class="btn btn-dark">
+            Welcome, <%= current_user.email %>
+          </a>
+        </div>
+        <div class="text-center mt-2">
+          <%= button_to 'Exit', destroy_user_session_path, method: :delete, class: "btn btn-outline-primary btn-sm" %>
+          <%= link_to 'Editing', edit_user_registration_path, class: "btn btn-outline-primary btn-sm ml-2" %>
+        </div>
+      <% else %>
+        <div class="text-center mt-4">
+          <%= link_to 'Entrance', new_user_session_path, class: "btn btn-primary btn-sm" %>
+          <%= link_to 'Registration', new_user_registration_path, class: "btn btn-primary btn-sm ml-2" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
