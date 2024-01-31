@@ -1,5 +1,22 @@
 <h1>Events</h1>
 
+
+<%= form_tag(events_path, method: 'get') do %>
+  <div class="field">
+    <%= label_tag 'name', 'Название' %>
+    <%= text_field_tag 'name', params[:name] %>
+  </div>
+
+  <div class="field">
+    <%= label_tag 'category_id', 'Категория' %>
+    <%= collection_select(:event, :category_id, Category.all, :id, :name, { include_blank: true }, { class: 'select2' }) %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag 'Фильтровать' %>
+  </div>
+<% end %>
+
 <table>
   <thead>
     <tr>
