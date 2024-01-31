@@ -3,22 +3,24 @@ require 'faker'
 Category.destroy_all
 Event.destroy_all
 
-# Создаем 25 категорий
-25.times do
+5.times do
   Category.create!(name: Faker::Lorem.sentence(word_count: 3))
 end
+Category.create!(name:"личное")
+Category.create!(name:"Отдых")
+Category.create!(name:"Работа")
 
-# Создаем 25 событий, привязывая каждое к одной из категорий
 25.times do
   category = Category.all.sample
 
   Event.create!(
-    name: Faker::Lorem.sentence(word_count: 3),
+    name: Faker::Lorem.sentence(word_count: 1),
     date: Faker::Date.forward(days: 30),
     description: Faker::Lorem.paragraph(sentence_count: 2),
     category: category
   )
 end
 
-puts '25 событий  успешно созданы.'
+
+puts '8 событий  успешно созданы.'
 puts '25 категорий успешно созданы.'
