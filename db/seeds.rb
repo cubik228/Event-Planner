@@ -1,9 +1,24 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+require 'faker'
+
+Category.destroy_all
+Event.destroy_all
+
+# Создаем 25 категорий
+25.times do
+  Category.create!(name: Faker::Lorem.sentence(word_count: 3))
+end
+
+# Создаем 25 событий, привязывая каждое к одной из категорий
+25.times do
+  category = Category.all.sample
+
+  Event.create!(
+    name: Faker::Lorem.sentence(word_count: 3),
+    date: Faker::Date.forward(days: 30),
+    description: Faker::Lorem.paragraph(sentence_count: 2),
+    category: category
+  )
+end
+
+puts '25 событий  успешно созданы.'
+puts '25 категорий успешно созданы.'

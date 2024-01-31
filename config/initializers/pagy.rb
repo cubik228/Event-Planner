@@ -6,15 +6,6 @@
 
 require 'pagy/extras/bootstrap'
 
-Pagy::VARS[:nav_vars] = {
-  'class' => 'pagination',        # Добавляет к основному контейнеру навигации класс 'pagination'
-  'link'  => 'page-link',        # Добавляет к ссылкам класс 'page-link'
-  'prev'  => 'page-item prev',   # Добавляет к кнопке предыдущей страницы класс 'page-item' и 'prev'
-  'next'  => 'page-item next',   # Добавляет к кнопке следующей страницы класс 'page-item' и 'next'
-  'first' => 'page-item first',  # Добавляет к первой кнопке класс 'page-item' и 'first'
-  'last'  => 'page-item last'    # Добавляет к последней кнопке класс 'page-item' и 'last'
-}
-Pagy::VARS[:items] = 2
 # Pagy DEFAULT Variables
 # See https://ddnexus.github.io/pagy/docs/api/pagy#variables
 # All the Pagy::DEFAULT are set for all the Pagy instances but can be overridden per instance by just passing them to
