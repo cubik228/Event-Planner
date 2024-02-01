@@ -11,10 +11,8 @@ class WeatherService
     formatted_date = date.strftime("%Y-%m-%d")
     encoded_city = URI.encode_www_form_component(city)
     response = self.class.get("/history.json?key=#{@api_key}&q=#{encoded_city}&dt=#{formatted_date}")
-    puts "Response code: #{response.code}" # Добавьте эту строку
-    puts response.body # Добавьте эту строку
+    puts "Response code: #{response.code}" 
+    puts response.body 
     response.parsed_response if response.success?
   end
-  
-  
 end

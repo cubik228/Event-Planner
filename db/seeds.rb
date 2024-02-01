@@ -17,7 +17,7 @@ Category.create!(name:"Работа")
     name: Faker::Lorem.sentence(word_count: 1),
     date: Faker::Date.forward(days: 30),
     description: Faker::Lorem.paragraph(sentence_count: 2),
-    category: category
+    category: Category.all.sample
   )
 end
 
