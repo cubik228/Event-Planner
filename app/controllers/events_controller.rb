@@ -9,9 +9,6 @@ class EventsController < ApplicationController
   def show
     weather_service = WeatherService.new
     @weather_data = weather_service.get_weather_by_date(@event.date, 'Минск')
-    
-    #binding.pry
-    
   end
 
   def new
@@ -58,11 +55,11 @@ class EventsController < ApplicationController
   end
   
   def filtered_events
-    events = Event.all
-    events = events.where('name ILIKE ?', "%#{params[:name]}%") if params[:name].present?
-    events = events.where(category_id: params[:category_id]) if params[:category_id].present?
+    events = Event.includes(:category) 
+    events = events.where('events.name ILIKE ?', "%#{params[:name]}%") if params[:name].present?
+    if params[:category_name].present?
+      events = events.joins(:category).where('categories.name ILIKE ?', "%#{params[:category_name]}%")
+    end
     events
   end
-  
- 
 end
