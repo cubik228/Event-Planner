@@ -4,13 +4,13 @@
   <%= form_tag(events_path, method: 'get') do %>
     <div class="form-row">
       <div class="form-group col-md-6">
-        <%= label_tag 'name', 'name' %>
+        <%= label_tag 'name', 'Name' %>
         <%= text_field_tag 'name', params[:name], class: 'form-control', placeholder: 'Enter the name' %>
       </div>
 
       <div class="form-group col-md-6">
-        <%= label_tag 'category_id', 'category' %>
-        <%= collection_select(:event, :category_id, Category.all, :id, :name, { include_blank: true }, { class: 'form-control select2' }) %>
+        <%= label_tag 'category_name', 'Category' %>
+        <%= select_tag 'category_name', options_for_select(Category.pluck(:name), params[:category_name]), include_blank: 'All Category', class: 'form-control' %>
       </div>
     </div>
 

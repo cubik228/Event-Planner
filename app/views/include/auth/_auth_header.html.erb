@@ -2,15 +2,14 @@
   <div class="row justify-content-center">
     <div class="col-md-6">
       <% if user_signed_in? %>
-        <div class="text-center mt-4">
-          <a href="#" class="btn btn-dark">
-            Welcome, <%= current_user.email %>
-          </a>
-        </div>
-        <div class="text-center mt-2">
-          <%= button_to 'Exit', destroy_user_session_path, method: :delete, class: "btn btn-outline-primary btn-sm" %>
+      <div class="text-center mt-4">
+        Welcome, <%= current_user.email %>
+        <div class="d-flex  mt-2 text-center ">
+          <%= button_to 'Exit', destroy_user_session_path, method: :delete, class: "btn btn-outline-primary btn-sm", style: "margin-right: 5px;" %>
           <%= link_to 'Editing', edit_user_registration_path, class: "btn btn-outline-primary btn-sm ml-2" %>
         </div>
+      </div>
+      
       <% else %>
         <div class="text-center mt-4">
           <%= link_to 'Entrance', new_user_session_path, class: "btn btn-primary btn-sm" %>
